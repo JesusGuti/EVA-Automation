@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({page}) => {
-    await page.goto('http://infinitycode.tis.cs.umss.edu.bo');
+    await page.goto('http://127.0.0.1:8000/');
     /** Aqui hacemos click en el menu lateral, para entrar en el menu **/
     const botonMenu = await page.getByRole('button', { name: 'TIPO DE EVENTO' })
     await botonMenu.click(); 
@@ -18,7 +18,7 @@ test("test1", async ({ page }) => {
     await inputDescripcion.fill("Nueva descripcion")
     const botonEnviar = await page.getByRole('button', { name: 'Crear' });
     await botonEnviar.click();
-    await page.waitForTimeout(10000)
+    await page.waitForTimeout(5000);
 });
 
 test("test2", async ({ page }) => {
@@ -26,7 +26,7 @@ test("test2", async ({ page }) => {
     await opcionCrearTipoEvento.click();
     const botonEnviar = await page.getByRole('button', { name: 'Crear' });
     await botonEnviar.click();
-    await page.waitForTimeout(5000);
     const mensajeFaltaNombre = await page.getByText("El nombre no puede estar vacío.");
-    expect(mensajeFaltaNombre).toBeDefined();
+    await expect(mensajeFaltaNombre).toBeVisible();
+    await page.waitForTimeout(5000);
 });
