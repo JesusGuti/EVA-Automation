@@ -20,3 +20,16 @@ test("test1", async ({ page }) => {
     await botonEnviar.click();
     await page.waitForTimeout(10000)
 });
+
+test("test2", async ({ page }) => {
+    const opcionCrearTipoEvento = await page.getByRole('link', { name: 'Crear tipo de evento' });
+    await opcionCrearTipoEvento.click();
+    const inputNombre = await page.getByPlaceholder('Ingrese el nombre del tipo de evento');
+    await inputNombre.click();
+    await inputNombre.fill("Dorian lagarto");
+    const inputDescripcion =  await page.getByPlaceholder('Ingrese una descripción...');
+    await inputDescripcion.fill("Nueva descripcion")
+    const botonEnviar = await page.getByRole('button', { name: 'Crear' });
+    await botonEnviar.click();
+    await page.waitForTimeout(10000)
+});
