@@ -1,0 +1,18 @@
+# Instalar Cucumber 
+npm install --save-dev @cucumber/cucumber
+# Instalar ts-Node
+npm i ts-node -D
+
+# Se debe modificar el archivo settings.json con los siguientes valores
+"cucumber.features": [
+        "src/tests/**/*.feature",
+        "features/**/*.feature",
+        "tests/**/*.feature",
+        "*specs*/**/*.feature"
+    ],
+    "cucumber.glue": [
+        "src/tests/steps/**/*.ts"
+    ]
+
+# Para ejecutae los tests 
+npm test
