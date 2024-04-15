@@ -13,10 +13,11 @@ test.beforeEach(async ({page}) => {
 test("Verificar que el nombre de tipo de evento sea una cadena de caracteres", async ({ page }) => {
     const inputNombre = await page.getByPlaceholder('Ingrese el nombre del tipo de evento');
     await inputNombre.click();
-    await inputNombre.fill("Competencia");
+    await inputNombre.fill("Clasificatorio");
     const inputDescripcion =  await page.getByPlaceholder('Ingrese una descripción...');
     const descripcion = "Una descripcion"
     await inputDescripcion.fill(descripcion);
+    
     const botonEnviar = await page.getByRole('button', { name: 'Crear' });
     await botonEnviar.click();
     await page.waitForTimeout(5000);
@@ -41,4 +42,14 @@ test("Verificar que el nombre de tipo de evento sea único", async ({ page }) =>
     const alertText = await alert.textContent();
     await expect(alertText).toContain("El tipo de evento ya existe");
     await page.waitForTimeout(1000);
+});
+
+test("Verificar que el nombre de tipo de evento tenga como máximo 50 caracteres", async ({ page }) => {
+    const inputNombre = await page.getByPlaceholder('Ingrese el nombre del tipo de evento');
+    await inputNombre.click();
+    const nombreLargo = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m";
+    await inputNombre.fill(nombreLargo);
+    const valorInput = await inputNombre.inputValue();
+    expect(valorInput.length).toBeLessThanOrEqual(50);
+    await page.waitForTimeout(2000);
 });
