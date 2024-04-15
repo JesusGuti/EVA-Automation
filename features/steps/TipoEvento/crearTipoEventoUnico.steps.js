@@ -1,5 +1,5 @@
-const { createBdd } = require("playwright-bdd");
-const { expect } = require("@playwright/test");
+import { createBdd } from "playwright-bdd";
+import { expect } from "@playwright/test";
 const { Given, When, Then } = createBdd();
 
 Given("el usuario está en la vista de crear tipo de evento",async ({page}) => {
@@ -26,4 +26,17 @@ Then("se muestra una alerta",async ({page}) => {
     await expect(alertText).toContain("El tipo de evento ya existe");
     await page.waitForTimeout(1000);
     await page.close()
+})
+
+When("cree un evento sin nombre",async ({page}) => {
+    const botonEnviar = await page.getByRole('button', { name: 'Crear' });
+    await botonEnviar.click();
+})
+
+Then("se muestra un mensaje de error",async ({page}) => {
+    await page.waitForTimeout(2000);
+    const mensajeFaltaNombre = await page.getByText("El nombre no puede estar vacío.");
+    await expect(mensajeFaltaNombre).toBeVisible();
+    await page.waitForTimeout(2000);
+    await page.close();
 })

@@ -13,4 +13,3 @@ Feature: Crear Patrocinador
           When cree un patrocinador sin nombre
           Then se muestra una mensaje de que el nombre de patrocinador no puede ser nulo
      
-

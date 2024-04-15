@@ -1,6 +1,6 @@
 // @ts-check
-const { defineConfig, devices, expect } = require('@playwright/test');
-const { defineBddConfig } = require('playwright-bdd');
+import { defineConfig, devices } from '@playwright/test';
+import { defineBddConfig } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
   paths: ['features'],

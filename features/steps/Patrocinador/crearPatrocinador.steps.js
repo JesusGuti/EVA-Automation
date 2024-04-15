@@ -1,5 +1,5 @@
-const { createBdd } = require("playwright-bdd");
-const { expect } = require("@playwright/test");
+import { createBdd } from "playwright-bdd";
+import { expect } from "@playwright/test";
 const { Given, When, Then } = createBdd();
 
 Given("el usuario está en la vista de crear patrocinador",async ({page}) => {

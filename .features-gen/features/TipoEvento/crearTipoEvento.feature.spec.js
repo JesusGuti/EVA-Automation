@@ -7,7 +7,7 @@ test.describe("Crear Tipo de Evento", () => {
   });
 
   test("verificar que el nombre de la playlist sea unico", async ({ Given, page, When, Then }) => {
-    await Given("el usuario está en la sección de crear tipo de evento", null, { page });
+    await Given("el usuario está en la vista de crear tipo de evento", null, { page });
     await When("cree un evento con un nombre repetido", null, { page });
     await Then("se muestra una alerta", null, { page });
   });
