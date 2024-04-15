@@ -15,7 +15,6 @@ let browser: Browser;
 let page: Page;
 
 When("cree un evento sin nombre",async () => {
-    await page.waitForTimeout(5000);
     const botonEnviar = await page.getByRole('button', { name: 'Crear' });
     await botonEnviar.click();
 })

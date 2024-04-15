@@ -3,8 +3,6 @@ import {
     Given,
     When,
     Then,
-    After,
-    AfterAll
 } from '@cucumber/cucumber';
 import { 
     test, 
@@ -42,4 +40,5 @@ Then("se muestra una alerta",async () => {
     const alertText = await alert.textContent();
     await expect(alertText).toContain("El tipo de evento ya existe");
     await page.waitForTimeout(1000);
+    await page.close()
 })
